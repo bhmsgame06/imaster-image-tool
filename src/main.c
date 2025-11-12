@@ -23,6 +23,7 @@ const struct option longopts[] = {
 	{NULL, 0, NULL, 0}
 };
 
+static char *new_filename = NULL;
 static int action = ACTION_UNDEFINED;
 static int png_compression_level = Z_BEST_COMPRESSION;
 
@@ -57,12 +58,14 @@ void show_help(int err) {
 
 /* change extension of the filename */
 char *ch_ext(char *filename, char *new_ext) {
+	free(new_filename);
+
 	int i;
 	for(i = strlen(filename) - 1; i > 0; i--) {
 		if(filename[i] == '.') break;
 	}
 
-	char *new_filename = malloc(i + strlen(new_ext) + 2);
+	new_filename = malloc(i + strlen(new_ext) + 2);
 	memcpy(new_filename, filename, i);
 	new_filename[i] = '.';
 	strcpy(new_filename + i + 1, new_ext);
@@ -87,7 +90,7 @@ int main(int argc, char *argv[]) {
 				return 0;
 
 			case 'c':
-				png_compression_level = atoi(strdup(optarg));
+				png_compression_level = atoi(optarg);
 				break;
 
 			case 'd':
@@ -197,7 +200,6 @@ int main(int argc, char *argv[]) {
 			perror("Imaster_encode");
 			return 1;
 		}
-		fclose(dest_fd);
 	
 		free(data);
 
