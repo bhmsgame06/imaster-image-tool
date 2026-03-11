@@ -77,7 +77,7 @@ char *ch_ext(char *filename, char *new_ext) {
 int main(int argc, char *argv[]) {
 	/* checking zeroth arg */
 	if(argv[0] == NULL)
-		program_name = "imdec";
+		program_name = "imtool";
 	else
 		program_name = argv[0];
 
