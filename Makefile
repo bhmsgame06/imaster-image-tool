@@ -7,7 +7,7 @@ OBJS := $(SRC_DIR)/main.o \
 		$(SRC_DIR)/im_encode.o
 LIBS := -lm -lz -lpng
 CC := gcc
-CFLAGS := -O2
+CFLAGS := -O2 -g
 LD := gcc
 LDFLAGS := $(LIBS)
 

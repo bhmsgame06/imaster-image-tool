@@ -25,7 +25,6 @@ bool png_decode(FILE *fd, uint8_t **p_data, int *p_width, int *p_height, bool *p
 
 	/* set error jump address */
 	if(setjmp(png_jmpbuf(png_ctx))) {
-		if(data != NULL) free(data);
 		png_destroy_read_struct(&png_ctx, &png_info, NULL);
 		return false;
 	}
