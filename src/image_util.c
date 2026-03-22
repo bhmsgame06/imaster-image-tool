@@ -42,7 +42,13 @@ bool png_decode(FILE *fd, uint8_t **p_data, int *p_width, int *p_height, bool *p
 	png_set_bgr(png_ctx);
 	if(bd < 8) png_set_expand_gray_1_2_4_to_8(png_ctx);
 	if(bd == 16) png_set_strip_16(png_ctx);
-	if(ct & PNG_COLOR_MASK_PALETTE) png_set_palette_to_rgb(png_ctx);
+	if(ct & PNG_COLOR_MASK_PALETTE) {
+		png_set_palette_to_rgb(png_ctx);
+		if(png_get_valid(png_ctx, png_info, PNG_INFO_tRNS)) {
+			png_set_tRNS_to_alpha(png_ctx);
+			alpha = true;
+		}
+	}
 	if(!(ct & PNG_COLOR_MASK_COLOR)) png_set_gray_to_rgb(png_ctx);
 	if(ct & PNG_COLOR_MASK_ALPHA) alpha = true;
 
