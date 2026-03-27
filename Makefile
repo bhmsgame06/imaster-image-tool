@@ -1,14 +1,22 @@
 SRC_DIR := src
 BUILD_DIR := bin
+
 OBJS := $(SRC_DIR)/main.o \
 		$(SRC_DIR)/image_util.o \
 		$(SRC_DIR)/qmage_tables.o \
 		$(SRC_DIR)/im_decode.o \
 		$(SRC_DIR)/im_encode.o
 LIBS := -lm -lz -lpng
-CC := gcc
+
+ifeq ($(OS),Windows_NT)
+	CC := x86_64-w64-mingw32-gcc
+	LD := x86_64-w64-mingw32-gcc
+else
+	CC := gcc
+	LD := gcc
+endif
+
 CFLAGS := -O2 -g
-LD := gcc
 LDFLAGS := $(LIBS)
 
 all: imtool
