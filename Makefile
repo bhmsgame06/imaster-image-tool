@@ -19,6 +19,8 @@ endif
 CFLAGS := -O2 -g
 LDFLAGS := $(LIBS)
 
+PREFIX := /usr/local
+
 all: imtool
 
 imtool: $(OBJS)
@@ -29,7 +31,7 @@ imtool: $(OBJS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 install:
-	install $(BUILD_DIR)/imtool /usr/local/bin
+	install $(BUILD_DIR)/imtool $(PREFIX)/bin
 
 clean:
 	rm -f $(OBJS)
