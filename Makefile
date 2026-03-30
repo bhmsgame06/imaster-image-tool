@@ -31,7 +31,7 @@ imtool: $(OBJS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 install:
-	install $(BUILD_DIR)/imtool $(PREFIX)/bin
+	install -Dm755 $(BUILD_DIR)/imtool $(PREFIX)/bin
 
 clean:
 	rm -f $(OBJS)
