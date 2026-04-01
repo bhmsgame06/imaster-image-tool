@@ -23,7 +23,7 @@ const struct option longopts[] = {
 	{NULL, 0, NULL, 0}
 };
 
-static char *new_filename = NULL;
+static char *new_filename;
 static int action = ACTION_UNDEFINED;
 static int png_compression_level = Z_BEST_COMPRESSION;
 
