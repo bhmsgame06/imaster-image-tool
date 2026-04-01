@@ -58,12 +58,15 @@ void show_help(int err) {
 
 /* change extension of the filename */
 char *ch_ext(char *filename, char *new_ext) {
-	free(new_filename);
+	if(new_filename) free(new_filename);
+
+	int len = strlen(filename);
 
 	int i;
-	for(i = strlen(filename) - 1; i > 0; i--) {
+	for(i = len - 1; i > 0; i--) {
 		if(filename[i] == '.') break;
 	}
+	if(i == 0) i = len;
 
 	new_filename = malloc(i + strlen(new_ext) + 2);
 	memcpy(new_filename, filename, i);
