@@ -165,7 +165,10 @@ bool convert_rgb565_rgb888(uint8_t **p_data, bool alpha, int length) {
 	for(uint8_t *p1 = *p_data, *p2 = p_new; p1 < p_data_end; p1 += 2 + alpha, p2 += 3 + alpha) {
 
 		uint16_t rgb565 = p1[0] | (p1[1] << 8);
-		uint32_t rgb888 = ((rgb565 & 0x001f) << 3) | ((rgb565 & 0x07e0) << 5) | ((rgb565 & 0xf800) << 8);
+		uint32_t rgb888 = 
+			(((rgb565 & 0x001f) << 3) | ((rgb565 & 0xe000) << 3)) | 
+			(((rgb565 & 0x07e0) << 5) | ((rgb565 & 0x0600) >> 1)) | 
+			(((rgb565 & 0xf800) << 8) | ((rgb565 & 0x001c) >> 2));
 
 		p2[0] = rgb888 >> 16 & 0xff;
 		p2[1] = rgb888 >> 8 & 0xff;
