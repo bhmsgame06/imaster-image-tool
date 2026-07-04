@@ -33,6 +33,7 @@ extern int32_t Qmage_ori_deltaRGB[];
 extern int32_t Qmage_ori_deltaRGB_8bit[];
 
 static bool Imaster_decode_alpha(uint8_t *out, uint8_t *data, int width, int height) {
+	printf("Imaster_decode_alpha\n");
 	int image_width = width;
 
 	/* in alpha decoding, each 16-bit pixel has two 8-bit values in it, rather than rgb565 value */
@@ -137,6 +138,7 @@ static bool Imaster_decode_alpha(uint8_t *out, uint8_t *data, int width, int hei
 }
 
 bool Imaster_decode(uint8_t **p_out, uint8_t *data, int *p_width, int *p_height, bool *p_alpha) {
+	printf("Imaster_decode\n");
 	/* checking magic */
 	if(data[0] != 'I' || data[1] != 'M') {
 		errno = EINVAL;
