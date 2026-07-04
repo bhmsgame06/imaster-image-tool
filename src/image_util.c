@@ -156,7 +156,6 @@ bool convert_rgb888_rgb565(uint8_t **p_data, bool alpha, int length) {
 
 /* convert RGB565 to RGB888 */
 bool convert_rgb565_rgb888(uint8_t **p_data, bool alpha, int length) {
-	printf("convert_rgb565_rgb888\n");
 	uint8_t *p_new = malloc(length * (3 + alpha));
 	if(p_new == NULL) {
 		return false;
